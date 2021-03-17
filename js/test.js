@@ -6,18 +6,46 @@ function Promise(executor){
     self.onRejectedCallBack=[];
     executor(resolve,reject);
     function resolve(value) {
-        //TODO
+        if(self.status==='pending'){
+            self.status='resolved';
+            self.data=value;
+            for(let i=0;i<self.onResolvedCallback.length;i++){
+                self.onResolvedCallback[i](value);
+            }
+        }
     }
-    function reject(value){
-        //TODO
+    function reject(reason){
+        if(self.status='pending'){
+            self.status='rejected';
+            self.data=reason;
+            for(let i=0;i<self.onRejectedCallBack.length;i++){
+                self.onRejectedCallBack[i](reason);
+            }
+        }
     }
+
+
     try{
-        executor(resolve.bind(this),reject.bind(this));
+        executor(resolve,reject);
     }catch(e){
         reject(e)
     }
 }
-
+Promise.prototype.then=function(onResolved,onRejected) {
+    let self=this;
+    let tempPromise;
+    onResolved=typeof onResolved==='function'?onResolved:function(v) {
+        return v;
+    }
+    onRejected=typeof onRejected==='function'?onRejected:function(v){
+        return v;
+    }
+    if(self.status==='resolved'){
+        return tempPromise=new Promise(function(resolve,reject){
+            
+        })
+    }
+}
 
 
 
