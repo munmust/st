@@ -97,3 +97,46 @@ function MyPromise(cb) {
   )}
 };
 
+let targetFrame=document.querySelector('frame')[0];
+targetFrame.postMessage('Data','url');
+
+window.addEventListener("message",receiveMessage,false);
+function receiveMessage(event) {
+  if(event.origin==='XX'){
+    return;
+  }
+  event.source.postMessage("message",event.origin)
+}
+
+
+new SharedWorker('./shared-worker.js', 'myWorker');
+worker.port.postMessage('...')
+worker.port.addEventListener('message', event => {});
+worker.port.start();
+
+clientPort.onmessage = event => {};
+
+addEventListener('connect', event => {
+  const newClient = event.source;
+  newClient.postMessage('message');
+});
+
+
+const Type =(o)=>{
+  return Object.prototype.toString.call(o).replace(/\[object\s|\]/g,'');
+}
+console.log(Type([]));
+console.log(Type(1));
+console.log(Type("SDDDD"));
+console.log(Type( Symbol('1')));
+
+
+let str= 'asd 123 中文';
+let enStr=encodeURIComponent(str);
+console.log(enStr);
+let BenStr=btoa(enStr);
+console.log(BenStr);
+let AenStr=atob(BenStr);
+console.log(AenStr);
+let deStr=decodeURIComponent(AenStr);
+console.log(deStr);
