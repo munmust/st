@@ -516,3 +516,68 @@ class Route extends React.Component {
 !["history"]("../assets/history.PNG","history");
 
 参考：https://juejin.cn/post/6886290490640039943
+
+
+## Hooks
+### useHistory
+可以使用history
+```javascript
+import { useHistory } from "react-router-dom";
+
+function HomeButton() {
+  let history = useHistory();
+
+  function handleClick() {
+    history.push("/home");
+  }
+
+  return (
+    <button type="button" onClick={handleClick}>
+      Go home
+    </button>
+  );
+}
+```
+### useLocation
+可以返回一个url的location对象，url修改就会返回一个新的location对象
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  useLocation
+} from "react-router-dom";
+
+function usePageViews() {
+  let location = useLocation();
+  React.useEffect(() => {
+    ga.send(["pageview", location.pathname]);
+  }, [location]);
+}
+
+function App() {
+  usePageViews();
+  return <Switch>...</Switch>;
+}
+
+ReactDOM.render(
+  <Router>
+    <App />
+  </Router>,
+  node
+);
+```
+###
+
+
+
+
+
+
+
+
+
+
+
+
