@@ -9,3 +9,21 @@ hidden：隐藏元素并保留其渲染状态，类似display:nonoe，但是再�
 
 ### content-intrinsic-size
 占位符尺寸来代替渲染内容，能够让元素有一个占位控件是
+
+## GitHub Copilot 登录时 `https://github.com/login/device` 的 8 位 code 从哪里来
+
+如果你在设备认证页面看到要输入 8 位 code，这个 code 不是 Google Authenticator 的 6 位 2FA 验证码。
+
+这个 8 位 code 会在你发起 Copilot 登录的地方显示出来，例如：
+- 命令行执行 `gh copilot login`
+- VSCode 安装/使用 Copilot 插件并点击登录
+- 其他触发 “登录 GitHub Copilot” 的入口
+
+通常会看到类似提示：
+
+`Your device code is: ABCD-EFGH`
+
+操作步骤：
+1. 回到刚才发起登录的命令行或 IDE 弹窗，找到显示的 8 位 device code。
+2. 打开 `https://github.com/login/device`，输入该 code 完成授权。
+3. 如果没找到 code，重新发起一次登录流程即可生成新的 code。
