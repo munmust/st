@@ -19,7 +19,7 @@ hidden：隐藏元素并保留其渲染状态，类似display:nonoe，但是再�
 - VSCode 安装/使用 Copilot 插件并点击登录
 - 其他触发 “登录 GitHub Copilot” 的入口
 
-通常会看到类似提示：
+通常会看到类似提示（8 位字符常以 `4+4` 并带连字符展示）：
 
 `Your device code is: ABCD-EFGH`
 
